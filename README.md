@@ -1,2 +1,2 @@
 # happyfox-test-automation
-A repository for the assignment round for Happyfox interview process
+A repository for the assignment round of Happyfox interview process
