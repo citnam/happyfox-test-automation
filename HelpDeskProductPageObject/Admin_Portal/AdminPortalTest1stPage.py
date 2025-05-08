@@ -8,16 +8,17 @@ class AdminPortalTest1stPage(AppPage):
         super().__init__(driver)
 
     def clickStatus(self):
-        self.hoverOverElementUsingJS(self.Title())
-        self.Title().click()
+        self.hoverAndClick(self.Title())
         self.Statuses().click()
 
     def clickPriorities(self):
-        self.sleep()
-        self.hoverOverElementUsingJS(self.Title())
-        self.Title().click()
-        self.hoverOverElementUsingJS(self.Priorities())
-        self.Priorities().click()
+        self.waitForVisible(self.Title())
+        self.hoverAndClick(self.Title())
+        self.hoverAndClick(self.Priorities)
+
+    def hoverAndClick(self, element):
+        self.hoverOverElementUsingJS(element)
+        element.click()
 
     def clickNewStatus(self):
         self.NewStatus().click()
@@ -82,8 +83,7 @@ class AdminPortalTest1stPage(AppPage):
         pqr = self.driver.find_element(By.XPATH, priority_xpath)
         self.hoverOverElementUsingJS(pqr)
         pqr.click()
-        self.sleep()
-        self.sleep()
+        self.sleep(4)
 
     def ClickAddedPriority(self, xpath):
         self.sleep()
@@ -104,7 +104,7 @@ class AdminPortalTest1stPage(AppPage):
 
     def clickDeleteConfirm(self):
         self.DeleteConfirm().click()
-        time.sleep(5)
+        self.sleep(5)
 
     def ClickAddedStatus(self, xpath):
         self.sleep()
@@ -129,14 +129,13 @@ class AdminPortalTest1stPage(AppPage):
         self.switchToDefaultContent()
 
     def clickProfile(self):
-        self.sleep()
         self.waitForVisible(self.Profile())
         self.Profile().click()
 
     def clickLogout(self):
         self.Logout().click()
 
-    def sleep(self):
+    def sleep(self, duration=2):
         time.sleep(2)
 
     def Title(self):
