@@ -8,16 +8,17 @@ class AdminPortalTest1stPage(AppPage):
         super().__init__(driver)
 
     def clickStatus(self):
-        self.hoverOverElementUsingJS(self.Title())
-        self.Title().click()
+        self.hoverAndClick(self.Title())
         self.Statuses().click()
 
     def clickPriorities(self):
         self.sleep()
-        self.hoverOverElementUsingJS(self.Title())
-        self.Title().click()
-        self.hoverOverElementUsingJS(self.Priorities())
-        self.Priorities().click()
+        self.hoverAndClick(self.Title())
+        self.hoverAndClick(self.Priorities)
+
+    def hoverAndClick(self, element):
+        self.hoverOverElementUsingJS(element)
+        element.click()
 
     def clickNewStatus(self):
         self.NewStatus().click()

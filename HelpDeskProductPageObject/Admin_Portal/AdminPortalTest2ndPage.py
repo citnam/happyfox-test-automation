@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from webdriverbase import AppPage
+import logging
 
 class AdminPortalTest2ndPage(AppPage):
     def __init__(self, driver):
