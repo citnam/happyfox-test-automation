@@ -28,7 +28,7 @@ class AdminPortalTest2ndPage(AppPage):
     
     def get_contact_name(self):
         contact_name = self.contact_name().text
-        print(contact_name)
+        logging.info(f"Current contact name is {contact_name}")
         return contact_name
     
     def email_text(self):
@@ -36,7 +36,7 @@ class AdminPortalTest2ndPage(AppPage):
     
     def get_email_text(self):
         email_text = self.email_text().text
-        print(email_text)
+        logging.info(f"Current email is {email_text}")
         return email_text
     
     def status_text(self):
@@ -44,7 +44,7 @@ class AdminPortalTest2ndPage(AppPage):
     
     def get_status_text(self):
         status_text = self.status_text().text
-        print(status_text)
+        logging.info(f"Status text is {status_text}")
         return status_text
     
     def priority_text(self):
@@ -89,8 +89,11 @@ class AdminPortalTest2ndPage(AppPage):
     
     def send_reply(self):
         self.reply_button().click()
-        self.sleep()
+        self.waitForElement((By.XPATH, "//div[@class='hf-toast-message']"), 10)
+
     
+
+
     def agent_portal(self):
         return self.driver.find_element(By.XPATH, "//a[contains(text(),'Agent Portal')]")
     
@@ -104,6 +107,9 @@ class AdminPortalTest2ndPage(AppPage):
         self.close_ticket().click()
         return AdminPortalTest1stPage(self.driver)
     
-    def sleep(self):
+    def sleep(self, duration=2):
         import time
         time.sleep(2)
+    
+    def waitForElement(self, locator, timeout=10):
+        WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
